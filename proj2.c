@@ -37,9 +37,8 @@ void hydrogen_process(shared_mem_t mem){
 		fprintf(mem->output, "%u: H %u: going to queue\n", mem->p_counter++, h_id);
 		fflush(mem->output);
 	sem_post(mem->writing);
-	sem_wait(mem->appending);
-		mem->h_in_queue++;
-	sem_post(mem->appending);
+
+	mem->h_in_queue++;
 
 	/*Signal pro kyslik, ze vodiky jsou pripravene pro tvorbu molekuly, nebo ze je nedostatek atomu vodiku*/
 	if(mem->h_in_queue > 1 || mem->h_total == mem->h_counter)

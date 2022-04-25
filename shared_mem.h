@@ -63,11 +63,10 @@ typedef struct shared_mem {
 
 	FILE * output; /*vystupni soubor*/
 	
-	sem_t * o_mutex; 
-	sem_t * h_mutex;
-	sem_t * mutex; 
-	sem_t * h_bond;
-	sem_t * appending;
+	sem_t * o_mutex; /*Semafor pro podmet od kysliku pro vodik, aby se vodik uvolnil z fronty*/
+	sem_t * h_mutex; /*Semafor pro podmet od vodiku pro kyslik, ze jsou k dispozici 2 atomy*/
+	sem_t * mutex;  /*Semafor pro tvorbu molekul*/
+	sem_t * h_bond; /*Semafor, ktery informuje vodik, ze byla dokoncena tvorba molekuly*/
 	sem_t * writing; /*Semafor pro spravny zapis do souboru*/
 } * shared_mem_t;
 

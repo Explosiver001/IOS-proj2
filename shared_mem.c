@@ -29,8 +29,6 @@ void init_values(shared_mem_t mem, input_t values){
 		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
 	if((mem->writing=create_shared_mem(sizeof(sem_t))) == NULL)
 		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
-	if((mem->appending=create_shared_mem(sizeof(sem_t))) == NULL)
-		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
 	if((mem->h_bond=create_shared_mem(sizeof(sem_t))) == NULL)
 		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
 
@@ -41,8 +39,6 @@ void init_values(shared_mem_t mem, input_t values){
 	if(sem_init(mem->o_mutex, 1, 0) == -1)
 		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
 	if(sem_init(mem->writing, 1, 1) == -1)
-		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
-	if(sem_init(mem->appending, 1, 1) == -1)
 		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
 	if(sem_init(mem->h_bond, 1, 0) == -1)
 		error_exit_free(mem, "Chyba pri allokaci pameti a inicializaci hodnot!\n");
@@ -100,8 +96,6 @@ void destroy_shared_mem(shared_mem_t mem){
 			munmap(mem->h_mutex, sizeof(sem_t));
 		if(mem->o_mutex != NULL)
 			munmap(mem->o_mutex, sizeof(sem_t));
-		if(mem->appending != NULL)
-			munmap(mem->appending, sizeof(sem_t));
 		if(mem->writing != NULL)
 			munmap(mem->writing, sizeof(sem_t));
 		if(mem->h_bond != NULL)

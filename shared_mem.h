@@ -59,7 +59,7 @@ typedef struct shared_mem {
 	unsigned TI; /*Cas, ktery kazdy atom ceka, nez je zarazen do fronty*/
 	unsigned TB; /*Cas na vytvoreni molekuly*/
 
-	bool missing_atoms;
+	bool missing_atoms; /*Informace, jestli chybi atomy k spracovani*/
 
 	FILE * output; /*vystupni soubor*/
 	

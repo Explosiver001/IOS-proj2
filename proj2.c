@@ -172,7 +172,7 @@ int main (int argc, char **argv) {
 			}
 			else{
 				mem->h_processes[i] = h_p;
-				printf("H pid: %d\n", h_p);
+				//printf("H pid: %d\n", h_p); //!debug
 			}
 		}
 		for(unsigned i = 0; i<mem->h_total; i++){
@@ -196,7 +196,7 @@ int main (int argc, char **argv) {
 			}
 			else{	
 				mem->o_processes[i] = o_p;
-				printf("O pid: %d\n", o_p);
+				//printf("O pid: %d\n", o_p); //!debug
 			}	
 		}
 	}

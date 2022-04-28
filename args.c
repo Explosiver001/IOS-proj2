@@ -21,9 +21,15 @@ void getInputValues(input_t * inputValues, int argc, char** argv){
 		}
 		switch(i){
 			case 1:
+				if(temp<0){
+					error_exit("Parametr NO musi byt kladne cislo (Zadano: %ld)!\n", temp);
+				}
 				inputValues->NO=temp;
 				break;
 			case 2:
+				if(temp<0){
+					error_exit("Parametr NH musi byt kladne cislo (Zadano: %ld)!\n", temp);
+				}
 				inputValues->NH=temp;
 				break;
 			case 3:

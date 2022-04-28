@@ -90,17 +90,27 @@ void destroy_shared_mem(shared_mem_t mem){
 			}
 			munmap(mem->o_processes, (mem->o_total * sizeof(pid_t)));
 		}
-		if(mem->mutex != NULL)
+		if(mem->mutex != NULL){
+			sem_destroy(mem->mutex);
 			munmap(mem->mutex, sizeof(sem_t));
-		if(mem->h_mutex != NULL)
+		}
+		if(mem->h_mutex != NULL){
+			sem_destroy(mem->h_mutex);
 			munmap(mem->h_mutex, sizeof(sem_t));
-		if(mem->o_mutex != NULL)
+		}
+		if(mem->o_mutex != NULL){
+			sem_destroy(mem->o_mutex);
 			munmap(mem->o_mutex, sizeof(sem_t));
-		if(mem->writing != NULL)
+		}
+		if(mem->writing != NULL){
+			sem_destroy(mem->writing);
 			munmap(mem->writing, sizeof(sem_t));
-		if(mem->h_bond != NULL)
+		}
+		if(mem->h_bond != NULL){
+			sem_destroy(mem->h_bond);
 			munmap(mem->h_bond, sizeof(sem_t));
-
+		}
+		
 		if(mem->output != NULL)
 			fclose(mem->output);
 	

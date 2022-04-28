@@ -18,27 +18,6 @@
 #define FILENAME "proj2.out"
 
 /**
- * @brief 	Struktura prvku ve fronte
- * 
- */
-typedef struct element * element_t;
-struct element{
-	int id;				/*ID cekajiciho prvku*/
-	element_t next;		/*Nasledujici prvek ve fronte*/
-};
-
-/**
- * @brief 	Struktura fronty 
- * 
- */
-typedef struct {
-	element_t head;		/*Prvni prvek ve fronte*/
-} * queue_t;
-
-
-
-
-/**
  * @brief Struktura polezek ve sdilene pameti
  * 
  */
@@ -68,7 +47,7 @@ typedef struct shared_mem {
 	sem_t * mutex;  /*Semafor pro tvorbu molekul*/
 	sem_t * h_bond; /*Semafor, ktery informuje vodik, ze byla dokoncena tvorba molekuly*/
 	sem_t * writing; /*Semafor pro spravny zapis do souboru*/
-} * shared_mem_t;
+} * shared_mem_t; /*Struktura sdilene pameti*/
 
 
 

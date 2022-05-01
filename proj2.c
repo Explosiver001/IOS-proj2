@@ -157,49 +157,38 @@ int main (int argc, char **argv) {
 	/* inicializace generatoru pseudo-nahodnych cisel */
 	srand(time(0));	
 
+	for(unsigned i = 0; i<mem->h_total; i++){
+		pid_t h_p = fork();
+		
+		if(h_p == 0){
+			hydrogen_process(mem);
+			exit(0);
+		}
+		else if(h_p == -1){
+			error_exit_free(mem, "Chyba vytvareni procesu!\n");
+		}
+		else{
+			mem->h_processes[i] = h_p;
+			//printf("H pid: %d\n", h_p); //!debug
+		}
+	}
+
+	for(unsigned i = 0; i<mem->o_total; i++){
+		pid_t o_p = fork();
+		
+		if(o_p == 0){
+			oxygen_process(mem);
+			exit(0);
+		}
+		else if(o_p == -1){
+			error_exit_free(mem, "Chyba vytvareni procesu!\n");
+		}
+		else{	
+			mem->o_processes[i] = o_p;
+			//printf("O pid: %d\n", o_p); //!debug
+		}	
+	}
 	
-	pid_t main_p = fork();
-	if(main_p == 0){
-		for(unsigned i = 0; i<mem->h_total; i++){
-			pid_t h_p = fork();
-			
-			if(h_p == 0){
-				hydrogen_process(mem);
-				exit(0);
-			}
-			else if(h_p == -1){
-				error_exit_free(mem, "Chyba vytvareni procesu!\n");
-			}
-			else{
-				mem->h_processes[i] = h_p;
-				//printf("H pid: %d\n", h_p); //!debug
-			}
-		}
-		for(unsigned i = 0; i<mem->h_total; i++){
-			waitpid(mem->h_processes[i], NULL, 0);
-		}
-		exit(0);
-	}
-	else if(main_p == -1){
-		error_exit_free(mem, "Chyba vytvareni procesu!\n");
-	}
-	else{
-		for(unsigned i = 0; i<mem->o_total; i++){
-			pid_t o_p = fork();
-			
-			if(o_p == 0){
-				oxygen_process(mem);
-				exit(0);
-			}
-			else if(o_p == -1){
-				error_exit_free(mem, "Chyba vytvareni procesu!\n");
-			}
-			else{	
-				mem->o_processes[i] = o_p;
-				//printf("O pid: %d\n", o_p); //!debug
-			}	
-		}
-	}
 
 	/*cekani na vsechny procesy*/
 	for(unsigned i = 0; i<mem->o_total; i++){

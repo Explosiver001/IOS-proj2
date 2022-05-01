@@ -102,6 +102,7 @@ void oxygen_process(shared_mem_t mem){
 				fflush(mem->output);
 			sem_post(mem->writing);
 
+			/*Vyzvednuti 2 atomu vodiku z fronty*/
 			sem_post(mem->h_bond);
 			mem->h_in_queue--;
 			sem_post(mem->h_bond);
@@ -110,7 +111,7 @@ void oxygen_process(shared_mem_t mem){
 			/*Cekani na vytvoreni molekuly vody*/
 			usleep((rand()%mem->TB + 1)*1000); 
 
-			/*Vyzvednuti 2 atomu vodiku z fronty*/
+			/*Informace vodikum o dokonceni vazby*/
 			sem_post(mem->o_mutex);
 			sem_post(mem->o_mutex);
 

@@ -36,5 +36,3 @@ void error_exit(const char *fmt, ...){
 void error_msg_print(const char *fmt, va_list args){
 	vfprintf(stderr, fmt, args);
 }
-
-

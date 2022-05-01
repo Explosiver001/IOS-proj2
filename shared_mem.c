@@ -117,4 +117,3 @@ void destroy_shared_mem(shared_mem_t mem){
 		munmap(mem, sizeof(struct shared_mem));
 	}
 }
-

@@ -2,7 +2,7 @@
  * @file 	proj2.c
  * @author 	Michal Novak  (xnovak3g@stud.fit.vutbr.cz)
  * @brief 	Projekt c. 2 do predmetu IOS - tvorba molekul vody
- * @date 	2022-04-18
+ * @date 	2022-05-02
  * 
  */
 

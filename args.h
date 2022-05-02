@@ -2,7 +2,7 @@
  * @file 	args.c
  * @author 	Michal Novak  (xnovak3g@stud.fit.vutbr.cz)
  * @brief	Zpracovani vstupnich argumentu programu
- * @date 	2022-04-18
+ * @date 	2022-05-02
  * 
  */
 

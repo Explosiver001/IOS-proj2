@@ -2,7 +2,7 @@
  * @file 	args.c
  * @author 	Michal Novak  (xnovak3g@stud.fit.vutbr.cz)
  * @brief	Zpracovani vstupnich argumentu programu
- * @date 	2022-04-18
+ * @date 	2022-05-02
  * 
  */
 
@@ -21,13 +21,13 @@ void getInputValues(input_t * inputValues, int argc, char** argv){
 		}
 		switch(i){
 			case 1:
-				if(temp<0){
+				if(temp<=0){
 					error_exit("Parametr NO musi byt kladne cislo (Zadano: %ld)!\n", temp);
 				}
 				inputValues->NO=temp;
 				break;
 			case 2:
-				if(temp<0){
+				if(temp<=0){
 					error_exit("Parametr NH musi byt kladne cislo (Zadano: %ld)!\n", temp);
 				}
 				inputValues->NH=temp;
